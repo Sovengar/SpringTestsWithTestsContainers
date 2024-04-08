@@ -1,0 +1,14 @@
+
+	java:S112F"FDefine and throw a dedicated exception instead of using a generic one.(·–ÄŞùÿÿÿÿ8š€ıÓë1J$7405e956-688a-4757-add9-6ee69ce8f0b6
+“	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıèõ8¢€ıÓë1J$3e7bb876-cffb-4eae-8205-d4a6c982dd11
+s
+java:S1481'"+Remove this unused "string" local variable.(«›ÿÒüÿÿÿÿ8”›¹Ôë1J$b160d897-8f3e-4744-80e9-ec11d48faf06
+r	java:S106="+Replace this use of System.out by a logger.(”»—§ÿÿÿÿÿ8Ü€ıÓë1J$a0161713-17a2-4d0c-bdda-29ee4eb483c9
+r	java:S106>"+Replace this use of System.out by a logger.(²ÚŸ³ÿÿÿÿÿ8Ş€ıÓë1J$37dc75bb-d200-4147-b88c-743a59767905
+r	java:S106?"+Replace this use of System.out by a logger.(€ÜÈâûÿÿÿÿ8ß€ıÓë1J$b4c0452e-99d7-47e7-94bc-6f88a2c25ada
+r	java:S106@"+Replace this use of System.out by a logger.(ªÓ¼áşÿÿÿÿ8à€ıÓë1J$5755ce08-1bc9-43b1-96bf-5df6a88514b2
+~	java:S125C"<This block of commented-out lines of code should be removed.(ÕÅÍ8¤Í“Ôë1J$59d89fdd-56dc-4915-b4e0-00af64917e56
+z
+java:S1128"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ8ªÍ“Ôë1J$a52839ff-a39c-4867-8918-9396a05a479d
+s
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8«Í“Ôë1J$76f8cba8-d00e-4716-80e8-bfc714e43f9d
