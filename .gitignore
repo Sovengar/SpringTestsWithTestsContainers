@@ -14,7 +14,7 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-SpringTestsWithTestsContainers/.idea
+.idea
 *.iws
 *.iml
 *.ipr
