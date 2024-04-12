@@ -8,21 +8,31 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class Student2Service {
-    private final Student2Repository studentRepository;
+    private final Student2Repository student2Repository;
+    private final Student2Mapper student2Mapper;
 
     public List<Student2> getAllStudents() {
-        return studentRepository.findAll();
+        return student2Repository.findAll();
     }
 
     public Student2 getStudentById(Long id) {
-        return studentRepository.findById(id).orElse(null);
+        return student2Repository.findById(id).orElse(null);
     }
 
-    public Student2 saveOrUpdateStudent(Student2 student) {
-        return studentRepository.save(student);
+    public Student2 create(Student2DTO dto) {
+        var student2 = student2Mapper.toEntity(dto);
+        return student2Repository.save(student2);
+    }
+
+    public Student2 update(Long id, Student2DTO dto) {
+        var student2 = student2Mapper.toEntity(dto);
+        student2.setId(id);
+
+        student2 = student2Repository.save(student2);
+        return student2Repository.save(student2);
     }
 
     public void deleteStudent(Long id) {
-        studentRepository.deleteById(id);
+        student2Repository.deleteById(id);
     }
 }

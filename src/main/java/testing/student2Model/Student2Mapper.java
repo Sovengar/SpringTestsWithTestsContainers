@@ -11,6 +11,7 @@ public class Student2Mapper {
                 .firstname(student2.getFirstname())
                 .lastname(student2.getLastname())
                 .email(student2.getEmail())
+                .age(student2.getAge())
                 .build();
     }
 
@@ -20,6 +21,7 @@ public class Student2Mapper {
         student2.setFirstname(student2DTO.getFirstname());
         student2.setLastname(student2DTO.getLastname());
         student2.setEmail(student2DTO.getEmail());
+        student2.setAge(student2DTO.getAge());
 
         return student2;
     }

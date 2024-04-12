@@ -11,12 +11,13 @@ class Student2MapperTest {
 
     @Test
     void shouldMapToDTO() {
-        Student2DTO dto = new Student2DTO("John", "Doe", "john@mail.com");
+        Student2DTO dto = new Student2DTO("John", "Doe", "john@mail.com", 20);
         Student2 student2 = mapper.toEntity(dto);
 
         assertThat(dto.getFirstname()).isEqualTo(student2.getFirstname());
         assertThat(dto.getLastname()).isEqualTo(student2.getLastname());
         assertThat(dto.getEmail()).isEqualTo(student2.getEmail());
+        assertThat(dto.getAge()).isEqualTo(student2.getAge());
     }
 
     @Test

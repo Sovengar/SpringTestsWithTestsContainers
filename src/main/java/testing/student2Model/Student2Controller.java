@@ -22,14 +22,13 @@ public class Student2Controller {
     }
 
     @PostMapping
-    public Student2 createStudent(@RequestBody Student2 student) {
-        return student2Service.saveOrUpdateStudent(student);
+    public Student2 createStudent(@RequestBody Student2DTO student) {
+        return student2Service.create(student);
     }
 
     @PutMapping("/{id}")
-    public Student2 updateStudent(@PathVariable Long id, @RequestBody Student2 student) {
-        student.setId(id); // Set the id of the student to update
-        return student2Service.saveOrUpdateStudent(student);
+    public Student2 updateStudent(@PathVariable Long id, @RequestBody Student2DTO student) {
+        return student2Service.update(id, student);
     }
 
     @DeleteMapping("/{id}")
