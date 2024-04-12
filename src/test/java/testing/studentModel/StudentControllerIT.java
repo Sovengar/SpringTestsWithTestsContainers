@@ -27,11 +27,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Testcontainers
-@SpringBootTest //No puede ser @WebMvc porque se carga la BD, prueba de integracion.
-@AutoConfigureMockMvc
+@SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-//TODO: ADD TRANSACTIONAL
-class StudentControllerITTest {
+@AutoConfigureMockMvc
+//TODO: ADD TRANSACTIONAL or is enough with @Rollback
+class StudentControllerIT {
 
     @Autowired
     private MockMvc mockMvc;
