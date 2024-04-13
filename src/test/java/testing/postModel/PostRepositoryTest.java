@@ -29,16 +29,17 @@ class PostRepositoryTest {
     @Autowired
     PostRepository postRepository;
 
-    @BeforeEach
-    void setUp() {
-        List<Post> posts = List.of(new Post(1L,1,"Hello, World!", "This is my first post!",null));
-        postRepository.saveAll(posts);
-    }
-
     @Test
     void connectionEstablished() {
         assertThat(postgres.isCreated()).isTrue();
         assertThat(postgres.isRunning()).isTrue();
+        System.out.println("JDBC URL -> " + postgres.getJdbcUrl()) ;
+    }
+
+    @BeforeEach
+    void setUp() {
+        List<Post> posts = List.of(new Post(1L,1,"Hello, World!", "This is my first post!",null));
+        postRepository.saveAll(posts);
     }
 
     @Test

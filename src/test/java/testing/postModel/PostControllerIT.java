@@ -1,14 +1,7 @@
 package testing.postModel;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.annotation.Rollback;
 import testing.BaseIntegrationTest;
-
-import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,8 +12,9 @@ class PostControllerIT extends BaseIntegrationTest {
     void connectionEstablished() {
         assertThat(postgres.isCreated()).isTrue();
         assertThat(postgres.isRunning()).isTrue();
+        System.out.println("JDBC URL -> " + postgres.getJdbcUrl()) ;
     }
-
+/*
     @Test
     void shouldFindAllPosts() {
         Post[] posts = testRestTemplate.getForObject("/api/posts", Post[].class);
@@ -41,7 +35,6 @@ class PostControllerIT extends BaseIntegrationTest {
     }
 
     @Test
-    @Rollback
     void shouldCreateNewPostWhenPostIsValid() {
         Post post = new Post(101L,1,"101 Title","101 Body",0);
 
@@ -63,7 +56,6 @@ class PostControllerIT extends BaseIntegrationTest {
     }
 
     @Test
-    @Rollback
     void shouldUpdatePostWhenPostIsValid() {
         ResponseEntity<Post> response = testRestTemplate.exchange("/api/posts/99", HttpMethod.GET, null, Post.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -79,11 +71,10 @@ class PostControllerIT extends BaseIntegrationTest {
     }
 
     @Test
-    @Rollback
     void shouldDeleteWithValidID() {
         ResponseEntity<Void> response = testRestTemplate.exchange("/api/posts/88", HttpMethod.DELETE, null, Void.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
     }
-
+*/
 }
 

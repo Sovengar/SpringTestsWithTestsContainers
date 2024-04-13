@@ -1,8 +1,8 @@
 package testing.config;
 
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.test.context.TestConfiguration;
 
-@Configuration
+@TestConfiguration(proxyBeanMethods = false)
 public class KafkaConfig {
 
     /*

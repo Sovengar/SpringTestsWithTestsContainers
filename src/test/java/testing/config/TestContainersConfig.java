@@ -5,5 +5,5 @@ import org.springframework.context.annotation.Import;
 
 @TestConfiguration(proxyBeanMethods = false)
 @Import({PostgreSQLConfig.class, KafkaConfig.class})
-public class TestContainersConfiguration {
+public class TestContainersConfig {
 }

@@ -69,7 +69,6 @@ class PostControllerTest {
                 .andExpect(content().json(jsonResponse));
 
         JSONAssert.assertEquals(jsonResponse, resultActions.andReturn().getResponse().getContentAsString(), false);
-
     }
 
     @Test

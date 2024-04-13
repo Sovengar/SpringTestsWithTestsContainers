@@ -30,6 +30,13 @@ class StudentRepositoryTest {
     }
 
     @Test
+    void connectionEstablished() {
+        assertThat(postgres.isCreated()).isTrue();
+        assertThat(postgres.isRunning()).isTrue();
+        System.out.println("JDBC URL -> " + postgres.getJdbcUrl()) ;
+    }
+
+    @Test
     void itShouldCheckWhenStudentEmailExists() {
         // given
         String email = "jamila@gmail.com";
