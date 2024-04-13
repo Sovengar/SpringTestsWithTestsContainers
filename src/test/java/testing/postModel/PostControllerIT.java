@@ -1,37 +1,19 @@
 package testing.postModel;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Transactional;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
+import testing.BaseIntegrationTest;
 
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Testcontainers
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Transactional
-class PostControllerIT {
 
-    @Container
-    @ServiceConnection
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16.0");
-
-    @Autowired
-    TestRestTemplate restTemplate;
+class PostControllerIT extends BaseIntegrationTest {
 
     @Test
     void connectionEstablished() {
@@ -41,20 +23,20 @@ class PostControllerIT {
 
     @Test
     void shouldFindAllPosts() {
-        Post[] posts = restTemplate.getForObject("/api/posts", Post[].class);
+        Post[] posts = testRestTemplate.getForObject("/api/posts", Post[].class);
         assertThat(posts).hasSizeGreaterThan(100);
     }
     
     @Test
     void shouldFindPostWhenValidPostID() {
-        ResponseEntity<Post> response = restTemplate.exchange("/api/posts/1", HttpMethod.GET, null, Post.class);
+        ResponseEntity<Post> response = testRestTemplate.exchange("/api/posts/1", HttpMethod.GET, null, Post.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isNotNull();
     }
 
     @Test
     void shouldThrowNotFoundWhenInvalidPostID() {
-        ResponseEntity<Post> response = restTemplate.exchange("/api/posts/999", HttpMethod.GET, null, Post.class);
+        ResponseEntity<Post> response = testRestTemplate.exchange("/api/posts/999", HttpMethod.GET, null, Post.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
@@ -63,7 +45,7 @@ class PostControllerIT {
     void shouldCreateNewPostWhenPostIsValid() {
         Post post = new Post(101L,1,"101 Title","101 Body",0);
 
-        ResponseEntity<Post> response = restTemplate.exchange("/api/posts", HttpMethod.POST, new HttpEntity<Post>(post), Post.class);
+        ResponseEntity<Post> response = testRestTemplate.exchange("/api/posts", HttpMethod.POST, new HttpEntity<Post>(post), Post.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(response.getBody()).isNotNull();
         assertThat(Objects.requireNonNull(response.getBody()).id()).isEqualTo(101);
@@ -75,7 +57,7 @@ class PostControllerIT {
     @Test
     void shouldNotCreateNewPostWhenValidationFails() {
         Post post = new Post(101L,1,"","",null);
-        ResponseEntity<Post> response = restTemplate.exchange("/api/posts", HttpMethod.POST, new HttpEntity<Post>(post), Post.class);
+        ResponseEntity<Post> response = testRestTemplate.exchange("/api/posts", HttpMethod.POST, new HttpEntity<Post>(post), Post.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
@@ -83,7 +65,7 @@ class PostControllerIT {
     @Test
     @Rollback
     void shouldUpdatePostWhenPostIsValid() {
-        ResponseEntity<Post> response = restTemplate.exchange("/api/posts/99", HttpMethod.GET, null, Post.class);
+        ResponseEntity<Post> response = testRestTemplate.exchange("/api/posts/99", HttpMethod.GET, null, Post.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
         Post existing = response.getBody();
@@ -99,7 +81,7 @@ class PostControllerIT {
     @Test
     @Rollback
     void shouldDeleteWithValidID() {
-        ResponseEntity<Void> response = restTemplate.exchange("/api/posts/88", HttpMethod.DELETE, null, Void.class);
+        ResponseEntity<Void> response = testRestTemplate.exchange("/api/posts/88", HttpMethod.DELETE, null, Void.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
     }
 

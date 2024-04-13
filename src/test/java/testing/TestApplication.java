@@ -8,19 +8,17 @@ import org.springframework.context.annotation.Bean;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
-@TestConfiguration(proxyBeanMethods = false)
+@TestConfiguration
 public class TestApplication {
 
-
+	@RestartScope
 	@Bean
 	@ServiceConnection
-	@RestartScope
-	PostgreSQLContainer<?> postgresContainer() {
-		return new PostgreSQLContainer<>(DockerImageName.parse("postgres:latest"));
+	public PostgreSQLContainer<?> postgresContainer() {
+		return new PostgreSQLContainer<>(DockerImageName.parse("postgres:16.0"));
 	}
 
 	public static void main(String[] args) {
 		SpringApplication.from(Application::main).with(TestApplication.class).run(args);
 	}
-
 }

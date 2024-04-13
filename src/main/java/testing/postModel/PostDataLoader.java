@@ -6,12 +6,14 @@ import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 @Component
+@Profile("dev")
 class PostDataLoader implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(PostDataLoader.class);

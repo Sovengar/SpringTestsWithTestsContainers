@@ -1,10 +1,12 @@
 package testing.student2Model;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@ActiveProfiles("test")
 class Student2MapperTest {
 
     private Student2Mapper mapper = new Student2Mapper();

@@ -2,6 +2,7 @@ package testing.studentModel;
 
 
 import org.mockito.InjectMocks;
+import org.springframework.test.context.ActiveProfiles;
 import testing.studentModel.exception.BadRequestException;
 import testing.studentModel.exception.StudentNotFoundException;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
+@ActiveProfiles("test")
 class StudentServiceTest {
 
     @Mock private StudentRepository studentRepository;
