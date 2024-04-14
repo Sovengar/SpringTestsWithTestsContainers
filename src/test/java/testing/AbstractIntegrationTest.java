@@ -26,7 +26,7 @@ import testing.config.TestContainersConfig;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Transactional
 @ActiveProfiles("test")
-public class BaseIntegrationTest {
+public abstract class AbstractIntegrationTest {
 
     //@Autowired
     //protected TestRestTemplate testRestTemplate;

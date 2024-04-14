@@ -1,2 +1,3 @@
-Para desarrollar, podemos utilizar la BD que obtenemos desde el main de Application gracias al compose o la que obtenemos al levantar el main de TestApplication gracias a TestContainers.
-Para tests individuales, tambien se utiliza la de TestContainers.
+Proyecto para hacer pruebas MVC unitarias y de integracion.
+Tanto el desarrollo como los tests se hacen con test Containers.
+Se utiliza testContainers Desktop para mapear el puerto al 5432 pero no es necesario.

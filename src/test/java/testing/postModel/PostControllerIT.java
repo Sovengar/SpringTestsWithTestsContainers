@@ -1,12 +1,12 @@
 package testing.postModel;
 
 import org.junit.jupiter.api.Test;
-import testing.BaseIntegrationTest;
+import testing.AbstractIntegrationTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class PostControllerIT extends BaseIntegrationTest {
+class PostControllerIT extends AbstractIntegrationTest {
 
     @Test
     void connectionEstablished() {
